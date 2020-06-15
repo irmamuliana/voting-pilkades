@@ -47,8 +47,29 @@ class PemilihController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PemilihCreate $request)
+    public function store(Request $request)
     {
+        $request->validate ([
+            'nama'          => 'required',
+            'nik'           => 'required|unique:pemilihs,nik',
+            'tps_id'        => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir'  => 'required',
+            'tanggal_lahir' => 'required',
+            'alamat'        => 'required',
+            'status'        => 'required',
+        ],
+        [
+            'nama.required'         => 'Nama Tidak Boleh Kosong!!!',
+            'nik.required'          => 'NIK Tidak Boleh Kosong!!!',
+            'nik.unique'            => 'NIK Sudah Digunakan!!!',
+            'tps_id.required'       => 'Tps Harus Dipilih!!!',
+            'tempat_lahir.required' => 'Tempat Lahir Tidak Boleh Kosong!!!',
+            'tanggal_lahir.required'=> 'Tanggal Lahir Tidak Boleh Kosong!!!',
+            'alamat.required'       => 'Alamat Tidak Boleh Kosong!!!',
+            'status.required'       => 'Status Harus Dipilih!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->pemilihRepo->create($input);
@@ -89,6 +110,26 @@ class PemilihController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate ([
+            'nama'          => 'required',
+            'nik'           => 'required',
+            'tps_id'        => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir'  => 'required',
+            'tanggal_lahir' => 'required',
+            'alamat'        => 'required',
+            'status'        => 'required',
+        ],
+        [
+            'nama.required'         => 'Nama Harus Diisi!!!',
+            'nik.required'          => 'NIK Harus Diisi!!!',
+            'tps_id.required'       => 'Tps Harus Dipilih!!!',
+            'tempat_lahir.required' => 'Tempat Lahir Harus Diisi!!!',
+            'tanggal_lahir.required'=> 'Tanggal Lahir Harus Diisi!!!',
+            'alamat.required'       => 'Alamat Harus Diisi!!!',
+            'status.required'       => 'Status Harus Dipilih!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->pemilihRepo->update($id,$input);

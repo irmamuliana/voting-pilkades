@@ -44,8 +44,17 @@ class TpsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TpsCreate $request)
+    public function store(Request $request)
     {
+        $request->validate ([
+            'nama'    => 'required',
+            'alamat'  => 'required',
+        ],
+        [
+            'nama.required'   => 'Nama Harus Diisi!!!',
+            'alamat.required' => 'Alamat Harus Diisi!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->tpsRepo->create($input);
@@ -84,6 +93,15 @@ class TpsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate ([
+            'nama'    => 'required',
+            'alamat'  => 'required',
+        ],
+        [
+            'nama.required'   => 'Nama Harus Diisi!!!',
+            'alamat.required' => 'Alamat Harus Diisi!!!',
+        ]);
+        
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->name, '-');
         $this->tpsRepo->update($id,$input);

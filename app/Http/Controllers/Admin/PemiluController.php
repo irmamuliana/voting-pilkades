@@ -46,6 +46,15 @@ class PemiluController extends Controller
      */
     public function store(PemiluCreate $request)
     {
+        $request->validate ([
+            'tanggal_pelaksanaan'        => 'required',
+            'tahun_periode'          => 'required',
+        ],
+        [
+            'tanggal_pelaksanaan.required'       => 'Tanggal Pelaksanaan Harus Diisi!!!',
+            'tahun_periode.required'         => 'Tahun Periode Harus Diisi!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->tahun_pelaksanaan, '-');
         $this->pemiluRepo->create($input);
@@ -84,6 +93,15 @@ class PemiluController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate ([
+            'tanggal_pelaksanaan'        => 'required',
+            'tahun_periode'          => 'required',
+        ],
+        [
+            'tanggal_pelaksanaan.required'       => 'Tanggal Pelaksanaan Harus Diisi!!!',
+            'tahun_periode.required'         => 'Tahun Periode Harus Diisi!!!',
+        ]);
+        
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->tahun_pelaksanaan, '-');
         $this->pemiluRepo->update($id,$input);

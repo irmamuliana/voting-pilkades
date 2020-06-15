@@ -46,8 +46,24 @@ class PaslonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PaslonCreate $request)
+    public function store(Request $request)
     {
+        $request->validate ([
+            'pemilu_id'     => 'required',
+            'nama_kepala'   => 'required',
+            'nama_wakil'    => 'required',
+            'visi'          => 'required',
+            'misi'          => 'required',
+        ],
+
+        [
+            'pemilu_id.required'    => 'Pemilu Harus Dipilih!!!',
+            'nama_kepala.required'  => 'Nama Calon Kepala Desa Tidak Boleh Kosong!!!',
+            'nama_wakil.required'   => 'Nama Calon Wakil Kepala Desa Tidak Boleh Kosong!!!',
+            'visi.required'         => 'Visi Tidak Boleh Kosong!!!',
+            'misi.required'         => 'Misi Tidak Boleh Kosong!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
 
@@ -96,6 +112,22 @@ class PaslonController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate ([
+            'pemilu_id'     => 'required',
+            'nama_kepala'   => 'required',
+            'nama_wakil'    => 'required',
+            'visi'          => 'required',
+            'misi'          => 'required',
+        ],
+
+        [
+            'pemilu_id.required'    => 'Pemilu Harus Dipilih!!!',
+            'nama_kepala.required'  => 'Nama Calon Kepala Desa Tidak Boleh Kosong!!!',
+            'nama_wakil.required'   => 'Nama Calon Wakil Kepala Desa Tidak Boleh Kosong!!!',
+            'visi.required'         => 'Visi Tidak Boleh Kosong!!!',
+            'misi.required'         => 'Misi Tidak Boleh Kosong!!!',
+        ]);
+        
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
 

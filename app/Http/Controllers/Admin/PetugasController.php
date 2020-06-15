@@ -46,8 +46,21 @@ class PetugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PetugasCreate $request)
+    public function store(Request $request)
     {
+        $request->validate ([
+            'tps_id'        => 'required',
+            'nama'          => 'required',
+            'no_telephone'  => 'required',
+            'alamat'        => 'required',
+        ],
+        [
+            'tps_id.required'       => 'Tps Harus Dipilih!!!',
+            'nama.required'         => 'Nama Tidak Boleh Kosong!!!',
+            'no_telephone.required' => 'Tempat Lahir Tidak Boleh Kosong!!!',
+            'alamat.required'       => 'Alamat Tidak Boleh Kosong!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->petugasRepo->create($input);
@@ -87,6 +100,19 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate ([
+            'tps_id'        => 'required',
+            'nama'          => 'required',
+            'no_telephone'  => 'required',
+            'alamat'        => 'required',
+        ],
+        [
+            'tps_id.required'       => 'Tps Harus Dipilih!!!',
+            'nama.required'         => 'Nama Harus Diisi!!!',
+            'no_telephone.required' => 'Tempat Lahir Harus Diisi!!!',
+            'alamat.required'       => 'Alamat Harus Diisi!!!',
+        ]);
+
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->petugasRepo->update($id,$input);
