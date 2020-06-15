@@ -51,11 +51,12 @@
             <img class="card-img-top" src="paslon/{{ $paslon->foto }}" alt="Card image cap" style="max-height: 20em;">
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">{{ $paslon->nama_kepala}}</h5>
-                <h5><b style="color: red;">Visi:</b></h5>
-                <p class="card-text">{{ $paslon->visi}}</p>
-                <h5><b style="color: red;">Misi:</b></h5>
-                <p class="card-text" style="height: 20em;">{{ $paslon->misi}}</p>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal_{{ $paslon->id}}">PILIH</a>
+              
+                <!-- Button Visi & Misi -->
+                <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalVisi_{{ $paslon->id}}">Visi & Misi</a>
+
+                <!-- Button Pilih -->
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal_{{ $paslon->id}}">Pilih</a>
             </div>
         </div>
       </div>
@@ -63,7 +64,50 @@
       </div>
     </div>
 
- <div class="container">
+<!-- Modal Visi & Misi-->
+<div class="container">
+
+  @foreach($paslons as $paslon)
+
+  {{ Form::open()}}
+
+  {{ Form::hidden('paslon_id',$paslon->id)}}
+  <!-- The Modal -->
+  <div class="modal" id="modalVisi_{{ $paslon->id}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h5><b style="color: red;">Visi:</b></h5>
+          <p class="card-text" style="height: 100px;">{{ $paslon->visi}}</p>
+          <h5><b style="color: red;">Misi:</b></h5>
+          <p class="card-text">{{ $paslon->misi}}</p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+{{ Form::close()}}
+  @endforeach()
+  
+</div>
+<!-- Penutup Modal Visi & Misi-->
+
+
+<!-- Modal Pilih-->
+<div class="container">
 
   @foreach($paslons as $paslon)
 
@@ -84,7 +128,7 @@
         <!-- Modal body -->
         <div class="modal-body">
          
-          Apakah anda yakin akan paslon {{$paslon->nama_kepala}} dan {{$paslon->nama_wakil}}  kandidat ini ?
+          Apakah anda yakin akan memilih pasangan calon {{$paslon->nama_kepala}} dan {{$paslon->nama_wakil}} ?
         </div>
         
         <!-- Modal footer -->
@@ -100,6 +144,7 @@
   @endforeach()
   
 </div>
+<!-- Penutup Modal Pilih-->
 
 
 
