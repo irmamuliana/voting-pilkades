@@ -15,10 +15,6 @@ Route::get('/qrcode', function () {
     return view('qrcode_login');
 });
 
-Route::get('/test', function () {
-    return view('voting');
-});
-
 // Handler Login Request With Ajax And QrCode
 Route::get('qrcode/login','Qrcode\AuthController@login');
 
@@ -48,5 +44,3 @@ Route::prefix('adminzone')->name('adminzone.')->group(function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
