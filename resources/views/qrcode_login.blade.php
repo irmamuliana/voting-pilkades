@@ -73,7 +73,7 @@
                                 new Audio('sudah_digunakan.mp3').play();
                             }else
                             {
-                                $( "#message" ).text( "Email Tidak Ditemukan" );
+                                $( "#message" ).text( "Data Tidak Ditemukan" );
                                 new Audio('tidak_ditemukan.mp3').play();
                             }
                         },
