@@ -16,10 +16,12 @@ class EloquentUserRepository extends AbstractRepository implements UserRepositor
 
     public function register($request)
     {
-        if ($request->hasFile('photo')) {
-            $photo              = $request->file('user_photo');
+        if(isset($request->photo))
+        {
+            $photo               = $request->file('photo');
             $nama_file          = $photo->getClientOriginalName();
             $photo->move('users',$nama_file);
+            $input['photo']      = $nama_file;
         }
 
         $user               = new User();
@@ -28,7 +30,6 @@ class EloquentUserRepository extends AbstractRepository implements UserRepositor
         $user->email        = $request->email;
         $user->description  = $request->description;
         $user->password     = Hash::make($request->password);
-        $user->photo        = $nama_file;
         return $user->save();
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\EloquentPemilihRepository;
-use App\Http\Requests\PemilihCreate;
 use App\Models\Tps;
 use PDF;
 

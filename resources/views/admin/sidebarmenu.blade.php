@@ -7,12 +7,13 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
+          
+          <li class="nav-item">
             <a href="{{ route('adminzone.user.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user-secret"></i>
               <p>Module User</p>
             </a>
-          </li> -->
+          </li>
 
           <li class="nav-item">
             <a href="{{ route('adminzone.pemilih.index') }}" class="nav-link">

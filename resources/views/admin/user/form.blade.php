@@ -23,7 +23,7 @@
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Photo</label>
         <div class="col-sm-10">
-           {{ Form::file('user_photo',null,['class'=>'form-control'])}}
+           {{ Form::file('photo',null,['class'=>'form-control'])}}
         </div>
     </div>
 </div>

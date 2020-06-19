@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Repositories\Eloquent\EloquentUserRepository;
 use App\Http\Requests\UserCreateRequest;
 
@@ -43,8 +44,20 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserCreateRequest $request)
+    public function store(Request $request)
     {
+        $request->validate ([
+            'name'          => 'required',
+            'email'           => 'required|unique:users,email',
+            'password'        => 'required',
+        ],
+        [
+            'name.required'         => 'Nama Tidak Boleh Kosong!!!',
+            'email.required'          => 'Email Tidak Boleh Kosong!!!',
+            'email.unique'            => 'Email Sudah Digunakan!!!',
+            'password.required'       => 'Password Harus Dipilih!!!',
+        ]);
+
         $this->UserRepo->register($request);
         return redirect(route('adminzone.user.index'))->with('message','Success Add New User With Name '.$request->name);
     }
@@ -84,9 +97,9 @@ class UserController extends Controller
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->name, '-');
 
-        if(empty($request->password))
+        if(!empty($request->password))
         {
-            unset($input['password']);
+            $input['password'] = Hash::make($request->password);
         }
         
         if(isset($request->photo))

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\EloquentPetugasRepository;
-use App\Http\Requests\PetugasCreate;
 use App\Models\Tps;
 
 class PetugasController extends Controller

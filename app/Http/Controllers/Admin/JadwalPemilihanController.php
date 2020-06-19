@@ -45,7 +45,7 @@ class JadwalPemilihanController extends Controller
         $input          = $request->all();
         $input['slug']  = \Str::slug($request->nama, '-');
         $this->jadwalpemilihanRepo->update($id,$input);
-        return redirect(route('adminzone.jadwal_pemilihan.index'))->with('message','Berhasil Mengededit Jadwal Pemilihan '.$request->nama);
+        return redirect(route('adminzone.jadwal_pemilihan.index'))->with('message','Berhasil Mengedit Jadwal Pemilihan '.$request->nama);
 
     }
 
