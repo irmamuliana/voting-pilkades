@@ -11,6 +11,34 @@
               @include('alert')
 
               <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                      <th width="10"> No </th>
+                      <th width="550">Nama Pasangan Calon</th>
+                      <th width="550">Tps</th>
+                      <th>Jumlah</th>
+                  </tr>
+              </thead>
+
+                @foreach ($paslons as $paslon)
+                <tr>
+                  <td>{{ $loop->iteration}}</td>
+                  <td>{{ $paslon->nama_kepala}}</td>
+                  <td>
+                    @foreach($tps as $t)
+                    {{ $t->nama}} : {{ hitung_suara_by_tps($paslon->id,$t->id) }}
+                    <hr>
+                    @endforeach
+                  </td>
+                  <td>
+                    {{ hitung_suara($paslon->id)}}
+                  </td>
+                </tr>
+                    
+                @endforeach
+              </table>
+
+              {{-- <table id="example1" class="table table-bordered table-striped">
                   <thead>
                       <tr>
                           <th width="10"> No </th>
@@ -29,7 +57,7 @@
                               <tr>
                                 <td>{{ $hasil->tps->nama }}</td>
                                 <td>:</td>
-                                <td>10</td>
+                                <td>{{ hitung_suara_by_tps($paslon_id,$tps_id)}}</td>
                               </tr>
 
                               <tr>
@@ -50,7 +78,7 @@
                       </tr>
                       @endforeach
                   </tbody>
-              </table>
+              </table> --}}
 
               <hr>
               <div style="width: 100%">

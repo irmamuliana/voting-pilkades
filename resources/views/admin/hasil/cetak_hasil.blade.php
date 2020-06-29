@@ -14,11 +14,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($paslon as $paslon)
+					@foreach($hasil as $hasil)
 					<tr>
 						<td>{{ $loop->iteration}}</td>
-			            <td>{{ $paslon->nama_kepala}} & {{ $paslon->nama_wakil}}</td>
-			            <td>{{ $paslon->hasil}} Suara</td>
+			            <td>{{ $hasil->paslon->nama_kepala}} & {{ $hasil->paslon->nama_wakil}}</td>
+			            <td>{{ $hasil->jumlah}} Suara</td>
 					</tr>
 					@endforeach
 				</tbody>

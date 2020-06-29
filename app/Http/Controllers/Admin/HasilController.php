@@ -70,13 +70,15 @@ class HasilController extends Controller
         $votingChart->dataset('PEROLEHAN SUARA', 'pie', $list_suara_paslon)->color($borderColors)
         ->backgroundcolor($fillColors);
         $hasil= $this->hasilRepo->all();
-        return view('admin.hasil.index',compact('hasil','votingChart'));
+        $paslons = \App\Models\Paslon::all();
+        $tps = \App\Models\Tps::all();
+        return view('admin.hasil.index',compact('hasil','votingChart','paslons','tps'));
     }
 
         public function generatePDF()
 
     {
-        $data['paslon'] = $this->paslonRepo->all();
+        $data['hasil'] = $this->hasilRepo->all();
 
         $pdf = PDF::loadView('admin.hasil.cetak_hasil', $data);
         return $pdf->stream();
