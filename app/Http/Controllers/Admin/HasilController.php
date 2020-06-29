@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Eloquent\EloquentPaslonRepository;
-use App\Http\Requests\PaslonCreate;
+use App\Repositories\Eloquent\EloquentHasilRepository;
+use App\Http\Requests\HasilCreate;
 use App\Models\Pemilu;
+use App\Models\Tps;
 use PDF;
 use App\Charts\VotingChart;
 
 class HasilController extends Controller
 {
     
-    public $paslonRepo;
+    public $hasilRepo;
 
-    public function __construct(EloquentPaslonRepository $paslonRepo)
+    public function __construct(EloquentHasilRepository $hasilRepo)
     {
         $this->middleware('auth');
-        $this->paslonRepo = $paslonRepo;
+        $this->hasilRepo = $hasilRepo;
     }
     /**
      * Display a listing of the resource.
@@ -58,18 +59,18 @@ class HasilController extends Controller
         $list_paslon = [];
         $list_suara_paslon = [];
 
-        foreach($this->paslonRepo->all() as $pasl)
+        foreach($this->hasilRepo->all() as $hasil)
         {
-            array_push($list_paslon,$pasl->nama_kepala);
-            array_push($list_suara_paslon,$pasl->hasil);
+            array_push($list_paslon,$hasil->paslon->nama_kepala);
+            array_push($list_suara_paslon,$hasil->jumlah);
         }
 
         $votingChart = new VotingChart;
         $votingChart->labels($list_paslon);
         $votingChart->dataset('PEROLEHAN SUARA', 'pie', $list_suara_paslon)->color($borderColors)
         ->backgroundcolor($fillColors);
-        $paslon= $this->paslonRepo->all();
-        return view('admin.hasil.index',compact('paslon','votingChart'));
+        $hasil= $this->hasilRepo->all();
+        return view('admin.hasil.index',compact('hasil','votingChart'));
     }
 
         public function generatePDF()

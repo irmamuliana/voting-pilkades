@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hasil extends Model
 {
-    protected $fillable=['tps_id','nama','no_telephone', 'alamat'];
+    protected $fillable=['paslon_id','tps_id','jumlah'];
 
     public function getCreatedAtAttribute($value)
     {
@@ -16,6 +16,11 @@ class Hasil extends Model
     public function tps()
     {
         return $this->belongsTo('App\Models\Tps')->select('nama','alamat');
+    }
+
+    public function paslon()
+    {
+        return $this->belongsTo('App\Models\Paslon')->select('nama_kepala','nama_wakil');
     }
 
 

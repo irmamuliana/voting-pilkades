@@ -15,15 +15,38 @@
                       <tr>
                           <th width="10"> No </th>
                           <th width="550">Nama Pasangan Calon</th>
-                          <th>Hasil</th>
+                          <th width="550">Tps</th>
+                          <th>Jumlah</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach($paslon as $paslon)
+                      @foreach($hasil as $hasil)
                       <tr>
                           <td>{{ $loop->iteration}}</td>
-                          <td>{{ $paslon->nama_kepala}} & {{ $paslon->nama_wakil}}</td>
-                          <td>{{ $paslon->hasil}}</td>
+                          <td>{{ $hasil->paslon->nama_kepala }} & {{ $hasil->paslon->nama_wakil}}</td>
+                          <td>
+                            <table class="">
+                              <tr>
+                                <td>{{ $hasil->tps->nama }}</td>
+                                <td>:</td>
+                                <td>10</td>
+                              </tr>
+
+                              <tr>
+                                <td>{{ $hasil->tps->nama }}</td>
+                                <td>:</td>
+                                <td>10</td>
+                              </tr>
+
+                              <tr>
+                                <td>{{ $hasil->tps->nama }}</td>
+                                <td>:</td>
+                                <td>10</td>
+                              </tr>
+
+                            </table>
+                          </td>
+                          <td>{{ $hasil->jumlah}}</td>
                       </tr>
                       @endforeach
                   </tbody>

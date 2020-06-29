@@ -34,7 +34,7 @@
                           <td>{{ $paslon->pemilu->tahun_periode}}</td>
                           <td>{{ $paslon->visi}}</td>
                           <td>{{ $paslon->misi}}</td>
-                      <td><img src="{{url('/paslon/'.$paslon->foto)}}"></td>
+                          <td><img width="100px" height="100px" src="{{url('/paslon/'.$paslon->foto)}}"></td>
                           <td><a href="{{ route('adminzone.paslon.edit',['id'=>$paslon->id]) }}" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a></td>
                           <td>
                               {{ Form::open(['url'=>route('adminzone.paslon.destroy',['id'=>$paslon->id]),'method'=>'delete'])}}
