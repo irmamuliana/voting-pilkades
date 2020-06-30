@@ -4,7 +4,11 @@
 	<title></title>
 </head>
 <body>
-	<h3 align="center"> Data Pemilih Tetap Desa Pakuhaji Kecamatan Ngamprah Kabupaten Bandung Barat</h3>
+	<h2 align="center"> 
+		Data Pemilih Tetap Desa Pakuhaji Kecamatan Ngamprah Kabupaten Bandung Barat
+	</h2>
+	<hr /> <br>
+
 	<table border="1" style="width: 100%" cellspacing="0">
 	<thead>
 		<tr>

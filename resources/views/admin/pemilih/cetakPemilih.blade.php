@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<table border="1" cellspacing="0" style="width: 40%" align="center">
+	<table border="1" cellspacing="0" style="width: 30%" align="center">
 		<tr>
 			<td><img src="{{asset('assets/img/kpu.png')}}" style="width: 60px;"></td>
 			<td>
@@ -13,7 +13,7 @@
 		</tr>
 	</table>
 
-	<table border="1" cellspacing="0" style="width: 40%" align="center">
+	<table border="1" cellspacing="0" style="width: 30%" align="center">
 		<tr>
 			<td>
 				<table>
