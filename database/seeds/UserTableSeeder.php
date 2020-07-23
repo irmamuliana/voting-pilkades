@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     public function run(EloquentUserRepository $userRepo)
     {
         User::truncate();
-        $user = ['email'=>'admin@gmail.com','password'=>Hash::make('password'),'name'=>'Administrator','slug'=>'administrator'];
+        $user = ['email'=>'admin@gmail.com','password'=>Hash::make('password'),'name'=>'Administrator'];
         user::create($user);
     }
 }

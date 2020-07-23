@@ -9,14 +9,14 @@
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Jam Mulai</label>
         <div class="col-sm-10">
-           {{ Form::time('jam_mulai',null,['class'=>'form-control','placeholder'=>'Tahun Periode'])}}
+           {{ Form::text('jam_mulai',null,['class'=>'form-control','placeholder'=>'Tahun Periode'])}}
         </div>
     </div>
 
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Jam Akhir</label>
         <div class="col-sm-10">
-           {{ Form::time('jam_akhir',null,['class'=>'form-control','placeholder'=>'Tahun Periode'])}}
+           {{ Form::text('jam_akhir',null,['class'=>'form-control','placeholder'=>'Tahun Periode'])}}
         </div>
     </div>
 </div>

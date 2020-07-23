@@ -15,7 +15,7 @@ class JadwalSeeder extends Seeder
         JadwalPemilihan::truncate();
 
         $jadwalpemilihan  = [
-            ['tanggal'=>date('2020-01-01'),'jam_mulai'=>'00:00:00','jam_akhir'=>'00:00:00', 'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:')]
+            ['tanggal'=>date('2020-07-01'),'jam_mulai'=>'00:00:00','jam_akhir'=>'00:00:00', 'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:')]
             
         ];
 

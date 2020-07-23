@@ -21,7 +21,6 @@ class CreatePaslonsTable extends Migration
             $table->string('foto');
             $table->text('visi');
             $table->text('misi');
-            $table->integer('hasil');
             $table->timestamps();
         });
     }

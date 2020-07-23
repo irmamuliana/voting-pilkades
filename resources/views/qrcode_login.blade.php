@@ -69,7 +69,7 @@
                                 window.location = "/voting";
                             }else if(response=='sudah_pilih')
                             {
-                              $( "#message" ).text( "sudah dipakai" );
+                              $( "#message" ).text( "Akun Anda Sudah Digunakan" );
                                 new Audio('sudah_digunakan.mp3').play();
                             }else
                             {

@@ -19,11 +19,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($hasil as $hasil)
+					@foreach($paslons as $paslon)
 					<tr>
 						<td>{{ $loop->iteration}}</td>
-			            <td>{{ $hasil->paslon->nama_kepala}} & {{ $hasil->paslon->nama_wakil}}</td>
-			            <td>{{ $hasil->jumlah}} Suara</td>
+			            <td>{{ $paslon->nama_kepala}} & {{ $paslon->nama_wakil}}</td>
+			            <td>{{ hitung_suara($paslon->id)==null?0:hitung_suara($paslon->id) }} Suara</td>
 					</tr>
 					@endforeach
 				</tbody>

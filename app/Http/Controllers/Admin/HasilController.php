@@ -59,11 +59,17 @@ class HasilController extends Controller
         $list_paslon = [];
         $list_suara_paslon = [];
 
-        foreach($this->hasilRepo->all() as $hasil)
+        foreach(\App\Models\Paslon::all() as $paslon)
         {
-            array_push($list_paslon,$hasil->paslon->nama_kepala);
-            array_push($list_suara_paslon,$hasil->jumlah);
+            array_push($list_paslon,$paslon->nama_kepala);
+            array_push($list_suara_paslon,hitung_suara($paslon->id)==null?0:hitung_suara($paslon->id));
         }
+
+        // foreach($this->hasilRepo->all() as $hasil)
+        // {
+        //     array_push($list_paslon,$hasil->paslon->nama_kepala);
+        //     array_push($list_suara_paslon,$hasil->jumlah);
+        // }
 
         $votingChart = new VotingChart;
         $votingChart->labels($list_paslon);
@@ -79,6 +85,9 @@ class HasilController extends Controller
 
     {
         $data['hasil'] = $this->hasilRepo->all();
+
+        $data['paslons'] = \App\Models\Paslon::all();
+        
 
         $pdf = PDF::loadView('admin.hasil.cetak_hasil', $data);
         return $pdf->stream();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Paslon;
+use App\Models\Hasil;
 use App\Models\Pemilih;
 class HomeController extends Controller
 {
@@ -29,7 +30,7 @@ class HomeController extends Controller
             $diff = $date_a->getTimestamp() - $date_b->getTimestamp();
             if($diff>0)
             {
-                $data['message'] = "jadwal pemilihan sudah ditutup";
+                $data['message'] = "Jadwal Pemilihan Sudah Ditutup";
                 $data['displayButton'] = false;
             }else
             {
@@ -61,11 +62,23 @@ class HomeController extends Controller
 
     public function voting_save(Request $request)
     {
-        $paslon = Paslon::find($request->paslon_id);
-        $paslon->hasil = $paslon->hasil+1;
-        $paslon->update();
-
+        
+        //return $request->all();
         $pemilih = Pemilih::where('nik',\Session('nik'))->first();
+        $hasil = Hasil::where('paslon_id',$request->paslon_id)->where('tps_id',$pemilih->tps_id)->first();
+        if($hasil==null)
+        {
+            // insert new
+            Hasil::create(['paslon_id'=>$request->paslon_id,'tps_id'=>$pemilih->tps_id,'jumlah'=>1]);
+            
+
+        }else{ 
+           $hasil->jumlah = $hasil->jumlah+1;
+           $hasil->update();
+        }
+
+
+        
         $pemilih->status='sudah memilih';
         $pemilih->update();
         \Session::forget('nik');

@@ -31,7 +31,7 @@
                     @endforeach
                   </td>
                   <td>
-                    {{ hitung_suara($paslon->id)}}
+                    {{ hitung_suara($paslon->id)==null?0:hitung_suara($paslon->id)}}
                   </td>
                 </tr>
                     
